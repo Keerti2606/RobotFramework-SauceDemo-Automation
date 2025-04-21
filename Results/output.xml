@@ -1,422 +1,155 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.1.1 (Python 3.11.9 on win32)" generated="20250418 12:49:49.617" rpa="false" schemaversion="4">
-<suite id="s1" name="Test Login Datadriven" source="C:\Users\HP\SauceDemoAutomation\Tests\test_login_datadriven.robot">
-<test id="s1-t1" name="Login With Multiple Credentials" line="11">
-<kw name="Read Test Data From Excel" library="DataKeywords">
-<kw name="Open Workbook" library="RPA.Excel.Files">
-<arg>${EXCEL_PATH}</arg>
-<doc>Open an existing Excel workbook.</doc>
-<msg timestamp="20250418 12:49:51.352" level="INFO">Opened workbook: &lt;RPA.Excel.Files.XlsxWorkbook object at 0x0000023AA5F36050&gt;</msg>
-<status status="PASS" starttime="20250418 12:49:51.352" endtime="20250418 12:49:51.352"/>
-</kw>
-<kw name="Read Worksheet As Table" library="RPA.Excel.Files">
-<var>${rows}</var>
-<arg>header=True</arg>
-<doc>Read the contents of a worksheet into a Table container. Allows
-sorting/filtering/manipulating using the ``RPA.Tables`` library.</doc>
-<msg timestamp="20250418 12:49:51.352" level="INFO">Created table: Table(columns=['Username', 'Password', 'ExpectedResult'], rows=4)</msg>
-<msg timestamp="20250418 12:49:51.352" level="INFO">${rows} = Table(columns=['Username', 'Password', 'ExpectedResult'], rows=4)</msg>
-<status status="PASS" starttime="20250418 12:49:51.352" endtime="20250418 12:49:51.352"/>
-</kw>
-<for flavor="IN">
-<var>${row}</var>
-<value>@{rows}</value>
-<iter>
-<var name="${row}">{'Username': 'standard_user', 'Password': 'secret_sauce', 'ExpectedResult': 'pass'}</var>
-<kw name="Set Variable" library="BuiltIn">
-<var>${username}</var>
-<arg>${row}[Username]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20250418 12:49:51.368" level="INFO">${username} = standard_user</msg>
-<status status="PASS" starttime="20250418 12:49:51.368" endtime="20250418 12:49:51.368"/>
-</kw>
-<kw name="Set Variable" library="BuiltIn">
-<var>${password}</var>
-<arg>${row}[Password]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20250418 12:49:51.368" level="INFO">${password} = secret_sauce</msg>
-<status status="PASS" starttime="20250418 12:49:51.368" endtime="20250418 12:49:51.368"/>
-</kw>
-<kw name="Set Variable" library="BuiltIn">
-<var>${expected}</var>
-<arg>${row}[ExpectedResult]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20250418 12:49:51.368" level="INFO">${expected} = pass</msg>
-<status status="PASS" starttime="20250418 12:49:51.368" endtime="20250418 12:49:51.368"/>
-</kw>
-<kw name="Execute Login Test" library="Keywords">
-<arg>${username}</arg>
-<arg>${password}</arg>
-<arg>${expected}</arg>
+<robot generator="Robot 6.1.1 (Python 3.11.9 on win32)" generated="20250421 16:32:54.638" rpa="false" schemaversion="4">
+<suite id="s1" name="Test Checkout" source="C:\Users\HP\SauceDemoAutomation\Tests\test_checkout.robot">
+<test id="s1-t1" name="Complete Checkout Flow" line="13">
 <kw name="Open Browser To SauceDemo" library="Keywords">
 <kw name="Open Browser" library="SeleniumLibrary">
 <arg>${URL}</arg>
 <arg>chrome</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20250418 12:49:51.368" level="INFO">Opening browser 'chrome' to base url 'https://www.saucedemo.com/'.</msg>
-<status status="PASS" starttime="20250418 12:49:51.368" endtime="20250418 12:49:54.381"/>
+<msg timestamp="20250421 16:32:55.091" level="INFO">Opening browser 'chrome' to base url 'https://www.saucedemo.com/'.</msg>
+<status status="PASS" starttime="20250421 16:32:55.091" endtime="20250421 16:32:57.434"/>
 </kw>
 <kw name="Maximize Browser Window" library="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" starttime="20250418 12:49:54.381" endtime="20250418 12:49:55.166"/>
+<status status="PASS" starttime="20250421 16:32:57.434" endtime="20250421 16:32:58.206"/>
 </kw>
-<status status="PASS" starttime="20250418 12:49:51.368" endtime="20250418 12:49:55.166"/>
+<status status="PASS" starttime="20250421 16:32:55.091" endtime="20250421 16:32:58.206"/>
 </kw>
+<kw name="Login With Credentials" library="CheckoutPage">
+<arg>${USERNAME}</arg>
+<arg>${PASSWORD}</arg>
 <kw name="Input Username" library="LoginPage">
-<arg>${username}</arg>
+<arg>${USERNAME}</arg>
 <kw name="Input Text" library="SeleniumLibrary">
 <arg>${USERNAME_FIELD}</arg>
 <arg>${username}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20250418 12:49:55.174" level="INFO">Typing text 'standard_user' into text field 'id:user-name'.</msg>
-<status status="PASS" starttime="20250418 12:49:55.174" endtime="20250418 12:49:55.534"/>
+<msg timestamp="20250421 16:32:58.218" level="INFO">Typing text 'standard_user' into text field 'id:user-name'.</msg>
+<status status="PASS" starttime="20250421 16:32:58.206" endtime="20250421 16:32:58.519"/>
 </kw>
-<status status="PASS" starttime="20250418 12:49:55.166" endtime="20250418 12:49:55.534"/>
+<status status="PASS" starttime="20250421 16:32:58.206" endtime="20250421 16:32:58.519"/>
 </kw>
 <kw name="Input Password" library="LoginPage">
-<arg>${password}</arg>
+<arg>${PASSWORD}</arg>
 <kw name="Input Text" library="SeleniumLibrary">
 <arg>${PASSWORD_FIELD}</arg>
 <arg>${password}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20250418 12:49:55.534" level="INFO">Typing text 'secret_sauce' into text field 'id:password'.</msg>
-<status status="PASS" starttime="20250418 12:49:55.534" endtime="20250418 12:49:55.755"/>
+<msg timestamp="20250421 16:32:58.519" level="INFO">Typing text 'secret_sauce' into text field 'id:password'.</msg>
+<status status="PASS" starttime="20250421 16:32:58.519" endtime="20250421 16:32:58.747"/>
 </kw>
-<status status="PASS" starttime="20250418 12:49:55.534" endtime="20250418 12:49:55.755"/>
+<status status="PASS" starttime="20250421 16:32:58.519" endtime="20250421 16:32:58.747"/>
 </kw>
 <kw name="Click Login Button" library="LoginPage">
 <kw name="Click Button" library="SeleniumLibrary">
 <arg>${LOGIN_BUTTON}</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<msg timestamp="20250418 12:49:55.755" level="INFO">Clicking button 'id:login-button'.</msg>
-<status status="PASS" starttime="20250418 12:49:55.755" endtime="20250418 12:49:55.979"/>
+<msg timestamp="20250421 16:32:58.753" level="INFO">Clicking button 'id:login-button'.</msg>
+<status status="PASS" starttime="20250421 16:32:58.747" endtime="20250421 16:32:59.003"/>
 </kw>
-<status status="PASS" starttime="20250418 12:49:55.755" endtime="20250418 12:49:55.979"/>
+<status status="PASS" starttime="20250421 16:32:58.747" endtime="20250421 16:32:59.003"/>
 </kw>
-<kw name="Run Keyword If" library="BuiltIn">
-<arg>'${expected}' == 'pass'</arg>
-<arg>Page Should Contain Element</arg>
-<arg>id:inventory_container</arg>
-<arg>ELSE</arg>
-<arg>Page Should Contain Element</arg>
-<arg>//button[@class='error-button']</arg>
-<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<kw name="Page Should Contain Element" library="SeleniumLibrary">
-<arg>id:inventory_container</arg>
-<doc>Verifies that element ``locator`` is found on the current page.</doc>
-<msg timestamp="20250418 12:49:56.003" level="INFO">Current page contains element 'id:inventory_container'.</msg>
-<status status="PASS" starttime="20250418 12:49:55.979" endtime="20250418 12:49:56.003"/>
+<status status="PASS" starttime="20250421 16:32:58.206" endtime="20250421 16:32:59.003"/>
 </kw>
-<status status="PASS" starttime="20250418 12:49:55.979" endtime="20250418 12:49:56.003"/>
-</kw>
-<kw name="Close Browser" library="SeleniumLibrary">
-<doc>Closes the current browser.</doc>
-<status status="PASS" starttime="20250418 12:49:56.003" endtime="20250418 12:49:58.381"/>
-</kw>
-<status status="PASS" starttime="20250418 12:49:51.368" endtime="20250418 12:49:58.381"/>
-</kw>
-<status status="PASS" starttime="20250418 12:49:51.368" endtime="20250418 12:49:58.381"/>
-</iter>
-<iter>
-<var name="${row}">{'Username': 'wrong_user', 'Password': 'secret_sauce', 'ExpectedResult': 'fail'}</var>
-<kw name="Set Variable" library="BuiltIn">
-<var>${username}</var>
-<arg>${row}[Username]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20250418 12:49:58.381" level="INFO">${username} = wrong_user</msg>
-<status status="PASS" starttime="20250418 12:49:58.381" endtime="20250418 12:49:58.381"/>
-</kw>
-<kw name="Set Variable" library="BuiltIn">
-<var>${password}</var>
-<arg>${row}[Password]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20250418 12:49:58.381" level="INFO">${password} = secret_sauce</msg>
-<status status="PASS" starttime="20250418 12:49:58.381" endtime="20250418 12:49:58.381"/>
-</kw>
-<kw name="Set Variable" library="BuiltIn">
-<var>${expected}</var>
-<arg>${row}[ExpectedResult]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20250418 12:49:58.381" level="INFO">${expected} = fail</msg>
-<status status="PASS" starttime="20250418 12:49:58.381" endtime="20250418 12:49:58.381"/>
-</kw>
-<kw name="Execute Login Test" library="Keywords">
-<arg>${username}</arg>
-<arg>${password}</arg>
-<arg>${expected}</arg>
-<kw name="Open Browser To SauceDemo" library="Keywords">
-<kw name="Open Browser" library="SeleniumLibrary">
-<arg>${URL}</arg>
-<arg>chrome</arg>
-<doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20250418 12:49:58.381" level="INFO">Opening browser 'chrome' to base url 'https://www.saucedemo.com/'.</msg>
-<status status="PASS" starttime="20250418 12:49:58.381" endtime="20250418 12:50:02.149"/>
-</kw>
-<kw name="Maximize Browser Window" library="SeleniumLibrary">
-<doc>Maximizes current browser window.</doc>
-<status status="PASS" starttime="20250418 12:50:02.149" endtime="20250418 12:50:02.235"/>
-</kw>
-<status status="PASS" starttime="20250418 12:49:58.381" endtime="20250418 12:50:02.235"/>
-</kw>
-<kw name="Input Username" library="LoginPage">
-<arg>${username}</arg>
-<kw name="Input Text" library="SeleniumLibrary">
-<arg>${USERNAME_FIELD}</arg>
-<arg>${username}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20250418 12:50:02.235" level="INFO">Typing text 'wrong_user' into text field 'id:user-name'.</msg>
-<status status="PASS" starttime="20250418 12:50:02.235" endtime="20250418 12:50:02.639"/>
-</kw>
-<status status="PASS" starttime="20250418 12:50:02.235" endtime="20250418 12:50:02.647"/>
-</kw>
-<kw name="Input Password" library="LoginPage">
-<arg>${password}</arg>
-<kw name="Input Text" library="SeleniumLibrary">
-<arg>${PASSWORD_FIELD}</arg>
-<arg>${password}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20250418 12:50:02.647" level="INFO">Typing text 'secret_sauce' into text field 'id:password'.</msg>
-<status status="PASS" starttime="20250418 12:50:02.647" endtime="20250418 12:50:02.862"/>
-</kw>
-<status status="PASS" starttime="20250418 12:50:02.647" endtime="20250418 12:50:02.862"/>
-</kw>
-<kw name="Click Login Button" library="LoginPage">
+<kw name="Add Item To Cart" library="HomePage">
+<arg>Sauce Labs Backpack</arg>
 <kw name="Click Button" library="SeleniumLibrary">
-<arg>${LOGIN_BUTTON}</arg>
+<arg>xpath://div[text()='${product_name}']/ancestor::div[@class='inventory_item']//button</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<msg timestamp="20250418 12:50:02.862" level="INFO">Clicking button 'id:login-button'.</msg>
-<status status="PASS" starttime="20250418 12:50:02.862" endtime="20250418 12:50:03.042"/>
+<msg timestamp="20250421 16:32:59.003" level="INFO">Clicking button 'xpath://div[text()='Sauce Labs Backpack']/ancestor::div[@class='inventory_item']//button'.</msg>
+<status status="PASS" starttime="20250421 16:32:59.003" endtime="20250421 16:32:59.195"/>
 </kw>
-<status status="PASS" starttime="20250418 12:50:02.862" endtime="20250418 12:50:03.042"/>
+<status status="PASS" starttime="20250421 16:32:59.003" endtime="20250421 16:32:59.195"/>
 </kw>
-<kw name="Run Keyword If" library="BuiltIn">
-<arg>'${expected}' == 'pass'</arg>
-<arg>Page Should Contain Element</arg>
-<arg>id:inventory_container</arg>
-<arg>ELSE</arg>
-<arg>Page Should Contain Element</arg>
-<arg>//button[@class='error-button']</arg>
-<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<kw name="Page Should Contain Element" library="SeleniumLibrary">
-<arg>//button[@class='error-button']</arg>
-<doc>Verifies that element ``locator`` is found on the current page.</doc>
-<msg timestamp="20250418 12:50:03.071" level="INFO">Current page contains element '//button[@class='error-button']'.</msg>
-<status status="PASS" starttime="20250418 12:50:03.045" endtime="20250418 12:50:03.071"/>
+<kw name="Sleep" library="BuiltIn">
+<arg>10s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250421 16:33:09.195" level="INFO">Slept 10 seconds</msg>
+<status status="PASS" starttime="20250421 16:32:59.195" endtime="20250421 16:33:09.195"/>
 </kw>
-<status status="PASS" starttime="20250418 12:50:03.042" endtime="20250418 12:50:03.071"/>
+<kw name="Click Cart Icon" library="CheckoutPage">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>class=shopping_cart_link</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20250421 16:33:09.195" level="INFO">Clicking element 'class=shopping_cart_link'.</msg>
+<status status="PASS" starttime="20250421 16:33:09.195" endtime="20250421 16:33:09.405"/>
 </kw>
-<kw name="Close Browser" library="SeleniumLibrary">
-<doc>Closes the current browser.</doc>
-<status status="PASS" starttime="20250418 12:50:03.071" endtime="20250418 12:50:05.473"/>
+<status status="PASS" starttime="20250421 16:33:09.195" endtime="20250421 16:33:09.405"/>
 </kw>
-<status status="PASS" starttime="20250418 12:49:58.381" endtime="20250418 12:50:05.473"/>
+<kw name="Sleep" library="BuiltIn">
+<arg>10s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250421 16:33:19.409" level="INFO">Slept 10 seconds</msg>
+<status status="PASS" starttime="20250421 16:33:09.408" endtime="20250421 16:33:19.409"/>
 </kw>
-<status status="PASS" starttime="20250418 12:49:58.381" endtime="20250418 12:50:05.473"/>
-</iter>
-<iter>
-<var name="${row}">{'Username': 'standard_user', 'Password': 'wrong_pass', 'ExpectedResult': 'fail'}</var>
-<kw name="Set Variable" library="BuiltIn">
-<var>${username}</var>
-<arg>${row}[Username]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20250418 12:50:05.473" level="INFO">${username} = standard_user</msg>
-<status status="PASS" starttime="20250418 12:50:05.473" endtime="20250418 12:50:05.473"/>
-</kw>
-<kw name="Set Variable" library="BuiltIn">
-<var>${password}</var>
-<arg>${row}[Password]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20250418 12:50:05.473" level="INFO">${password} = wrong_pass</msg>
-<status status="PASS" starttime="20250418 12:50:05.473" endtime="20250418 12:50:05.473"/>
-</kw>
-<kw name="Set Variable" library="BuiltIn">
-<var>${expected}</var>
-<arg>${row}[ExpectedResult]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20250418 12:50:05.473" level="INFO">${expected} = fail</msg>
-<status status="PASS" starttime="20250418 12:50:05.473" endtime="20250418 12:50:05.473"/>
-</kw>
-<kw name="Execute Login Test" library="Keywords">
-<arg>${username}</arg>
-<arg>${password}</arg>
-<arg>${expected}</arg>
-<kw name="Open Browser To SauceDemo" library="Keywords">
-<kw name="Open Browser" library="SeleniumLibrary">
-<arg>${URL}</arg>
-<arg>chrome</arg>
-<doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20250418 12:50:05.473" level="INFO">Opening browser 'chrome' to base url 'https://www.saucedemo.com/'.</msg>
-<status status="PASS" starttime="20250418 12:50:05.473" endtime="20250418 12:50:08.744"/>
-</kw>
-<kw name="Maximize Browser Window" library="SeleniumLibrary">
-<doc>Maximizes current browser window.</doc>
-<status status="PASS" starttime="20250418 12:50:08.747" endtime="20250418 12:50:08.819"/>
-</kw>
-<status status="PASS" starttime="20250418 12:50:05.473" endtime="20250418 12:50:08.819"/>
-</kw>
-<kw name="Input Username" library="LoginPage">
-<arg>${username}</arg>
-<kw name="Input Text" library="SeleniumLibrary">
-<arg>${USERNAME_FIELD}</arg>
-<arg>${username}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20250418 12:50:08.819" level="INFO">Typing text 'standard_user' into text field 'id:user-name'.</msg>
-<status status="PASS" starttime="20250418 12:50:08.819" endtime="20250418 12:50:09.170"/>
-</kw>
-<status status="PASS" starttime="20250418 12:50:08.819" endtime="20250418 12:50:09.170"/>
-</kw>
-<kw name="Input Password" library="LoginPage">
-<arg>${password}</arg>
-<kw name="Input Text" library="SeleniumLibrary">
-<arg>${PASSWORD_FIELD}</arg>
-<arg>${password}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20250418 12:50:09.178" level="INFO">Typing text 'wrong_pass' into text field 'id:password'.</msg>
-<status status="PASS" starttime="20250418 12:50:09.178" endtime="20250418 12:50:09.351"/>
-</kw>
-<status status="PASS" starttime="20250418 12:50:09.177" endtime="20250418 12:50:09.351"/>
-</kw>
-<kw name="Click Login Button" library="LoginPage">
+<kw name="Click Checkout Button" library="CheckoutPage">
 <kw name="Click Button" library="SeleniumLibrary">
-<arg>${LOGIN_BUTTON}</arg>
+<arg>//button[@id='checkout']</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<msg timestamp="20250418 12:50:09.351" level="INFO">Clicking button 'id:login-button'.</msg>
-<status status="PASS" starttime="20250418 12:50:09.351" endtime="20250418 12:50:09.535"/>
+<msg timestamp="20250421 16:33:19.409" level="INFO">Clicking button '//button[@id='checkout']'.</msg>
+<status status="PASS" starttime="20250421 16:33:19.409" endtime="20250421 16:33:19.748"/>
 </kw>
-<status status="PASS" starttime="20250418 12:50:09.351" endtime="20250418 12:50:09.535"/>
+<status status="PASS" starttime="20250421 16:33:19.409" endtime="20250421 16:33:19.748"/>
 </kw>
-<kw name="Run Keyword If" library="BuiltIn">
-<arg>'${expected}' == 'pass'</arg>
-<arg>Page Should Contain Element</arg>
-<arg>id:inventory_container</arg>
-<arg>ELSE</arg>
-<arg>Page Should Contain Element</arg>
-<arg>//button[@class='error-button']</arg>
-<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<kw name="Page Should Contain Element" library="SeleniumLibrary">
-<arg>//button[@class='error-button']</arg>
-<doc>Verifies that element ``locator`` is found on the current page.</doc>
-<msg timestamp="20250418 12:50:09.552" level="INFO">Current page contains element '//button[@class='error-button']'.</msg>
-<status status="PASS" starttime="20250418 12:50:09.535" endtime="20250418 12:50:09.552"/>
-</kw>
-<status status="PASS" starttime="20250418 12:50:09.535" endtime="20250418 12:50:09.552"/>
-</kw>
-<kw name="Close Browser" library="SeleniumLibrary">
-<doc>Closes the current browser.</doc>
-<status status="PASS" starttime="20250418 12:50:09.552" endtime="20250418 12:50:11.859"/>
-</kw>
-<status status="PASS" starttime="20250418 12:50:05.473" endtime="20250418 12:50:11.859"/>
-</kw>
-<status status="PASS" starttime="20250418 12:50:05.473" endtime="20250418 12:50:11.859"/>
-</iter>
-<iter>
-<var name="${row}">{'Username': 'locked_out_user', 'Password': 'secret_sauce', 'ExpectedResult': 'fail'}</var>
-<kw name="Set Variable" library="BuiltIn">
-<var>${username}</var>
-<arg>${row}[Username]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20250418 12:50:11.859" level="INFO">${username} = locked_out_user</msg>
-<status status="PASS" starttime="20250418 12:50:11.859" endtime="20250418 12:50:11.859"/>
-</kw>
-<kw name="Set Variable" library="BuiltIn">
-<var>${password}</var>
-<arg>${row}[Password]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20250418 12:50:11.859" level="INFO">${password} = secret_sauce</msg>
-<status status="PASS" starttime="20250418 12:50:11.859" endtime="20250418 12:50:11.859"/>
-</kw>
-<kw name="Set Variable" library="BuiltIn">
-<var>${expected}</var>
-<arg>${row}[ExpectedResult]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20250418 12:50:11.859" level="INFO">${expected} = fail</msg>
-<status status="PASS" starttime="20250418 12:50:11.859" endtime="20250418 12:50:11.859"/>
-</kw>
-<kw name="Execute Login Test" library="Keywords">
-<arg>${username}</arg>
-<arg>${password}</arg>
-<arg>${expected}</arg>
-<kw name="Open Browser To SauceDemo" library="Keywords">
-<kw name="Open Browser" library="SeleniumLibrary">
-<arg>${URL}</arg>
-<arg>chrome</arg>
-<doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20250418 12:50:11.859" level="INFO">Opening browser 'chrome' to base url 'https://www.saucedemo.com/'.</msg>
-<status status="PASS" starttime="20250418 12:50:11.859" endtime="20250418 12:50:14.495"/>
-</kw>
-<kw name="Maximize Browser Window" library="SeleniumLibrary">
-<doc>Maximizes current browser window.</doc>
-<status status="PASS" starttime="20250418 12:50:14.495" endtime="20250418 12:50:15.355"/>
-</kw>
-<status status="PASS" starttime="20250418 12:50:11.859" endtime="20250418 12:50:15.355"/>
-</kw>
-<kw name="Input Username" library="LoginPage">
-<arg>${username}</arg>
+<kw name="Fill Checkout Information" library="CheckoutPage">
+<arg>Keerti</arg>
+<arg>QA</arg>
+<arg>560001</arg>
 <kw name="Input Text" library="SeleniumLibrary">
-<arg>${USERNAME_FIELD}</arg>
-<arg>${username}</arg>
+<arg>//input[@id='first-name']</arg>
+<arg>${first}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20250418 12:50:15.355" level="INFO">Typing text 'locked_out_user' into text field 'id:user-name'.</msg>
-<status status="PASS" starttime="20250418 12:50:15.355" endtime="20250418 12:50:15.647"/>
+<msg timestamp="20250421 16:33:19.756" level="INFO">Typing text 'Keerti' into text field '//input[@id='first-name']'.</msg>
+<status status="PASS" starttime="20250421 16:33:19.756" endtime="20250421 16:33:20.033"/>
 </kw>
-<status status="PASS" starttime="20250418 12:50:15.355" endtime="20250418 12:50:15.647"/>
-</kw>
-<kw name="Input Password" library="LoginPage">
-<arg>${password}</arg>
 <kw name="Input Text" library="SeleniumLibrary">
-<arg>${PASSWORD_FIELD}</arg>
-<arg>${password}</arg>
+<arg>//input[@id='last-name']</arg>
+<arg>${last}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20250418 12:50:15.647" level="INFO">Typing text 'secret_sauce' into text field 'id:password'.</msg>
-<status status="PASS" starttime="20250418 12:50:15.647" endtime="20250418 12:50:15.862"/>
+<msg timestamp="20250421 16:33:20.033" level="INFO">Typing text 'QA' into text field '//input[@id='last-name']'.</msg>
+<status status="PASS" starttime="20250421 16:33:20.033" endtime="20250421 16:33:20.170"/>
 </kw>
-<status status="PASS" starttime="20250418 12:50:15.647" endtime="20250418 12:50:15.862"/>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>//input[@id='postal-code']</arg>
+<arg>${zip}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20250421 16:33:20.170" level="INFO">Typing text '560001' into text field '//input[@id='postal-code']'.</msg>
+<status status="PASS" starttime="20250421 16:33:20.170" endtime="20250421 16:33:20.321"/>
 </kw>
-<kw name="Click Login Button" library="LoginPage">
+<status status="PASS" starttime="20250421 16:33:19.756" endtime="20250421 16:33:20.321"/>
+</kw>
+<kw name="Click Continue And Finish" library="CheckoutPage">
 <kw name="Click Button" library="SeleniumLibrary">
-<arg>${LOGIN_BUTTON}</arg>
+<arg>id=continue</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<msg timestamp="20250418 12:50:15.862" level="INFO">Clicking button 'id:login-button'.</msg>
-<status status="PASS" starttime="20250418 12:50:15.862" endtime="20250418 12:50:16.353"/>
+<msg timestamp="20250421 16:33:20.321" level="INFO">Clicking button 'id=continue'.</msg>
+<status status="PASS" starttime="20250421 16:33:20.321" endtime="20250421 16:33:20.467"/>
 </kw>
-<status status="PASS" starttime="20250418 12:50:15.862" endtime="20250418 12:50:16.353"/>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>id=finish</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20250421 16:33:20.467" level="INFO">Clicking button 'id=finish'.</msg>
+<status status="PASS" starttime="20250421 16:33:20.467" endtime="20250421 16:33:20.596"/>
 </kw>
-<kw name="Run Keyword If" library="BuiltIn">
-<arg>'${expected}' == 'pass'</arg>
-<arg>Page Should Contain Element</arg>
-<arg>id:inventory_container</arg>
-<arg>ELSE</arg>
-<arg>Page Should Contain Element</arg>
-<arg>//button[@class='error-button']</arg>
-<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" starttime="20250421 16:33:20.321" endtime="20250421 16:33:20.596"/>
+</kw>
+<kw name="Verify Order Success Message" library="CheckoutPage">
 <kw name="Page Should Contain Element" library="SeleniumLibrary">
-<arg>//button[@class='error-button']</arg>
+<arg>xpath://h2[text()='Thank you for your order!']</arg>
 <doc>Verifies that element ``locator`` is found on the current page.</doc>
-<msg timestamp="20250418 12:50:16.408" level="INFO">Current page contains element '//button[@class='error-button']'.</msg>
-<status status="PASS" starttime="20250418 12:50:16.353" endtime="20250418 12:50:16.408"/>
+<msg timestamp="20250421 16:33:20.623" level="INFO">Current page contains element 'xpath://h2[text()='Thank you for your order!']'.</msg>
+<status status="PASS" starttime="20250421 16:33:20.596" endtime="20250421 16:33:20.623"/>
 </kw>
-<status status="PASS" starttime="20250418 12:50:16.353" endtime="20250418 12:50:16.408"/>
+<status status="PASS" starttime="20250421 16:33:20.596" endtime="20250421 16:33:20.623"/>
 </kw>
-<kw name="Close Browser" library="SeleniumLibrary">
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
 <doc>Closes the current browser.</doc>
-<status status="PASS" starttime="20250418 12:50:16.408" endtime="20250418 12:50:18.838"/>
+<status status="PASS" starttime="20250421 16:33:20.623" endtime="20250421 16:33:22.947"/>
 </kw>
-<status status="PASS" starttime="20250418 12:50:11.859" endtime="20250418 12:50:18.838"/>
-</kw>
-<status status="PASS" starttime="20250418 12:50:11.859" endtime="20250418 12:50:18.838"/>
-</iter>
-<status status="PASS" starttime="20250418 12:49:51.368" endtime="20250418 12:50:18.838"/>
-</for>
-<kw name="Close Workbook" library="RPA.Excel.Files">
-<doc>Close the active workbook.</doc>
-<msg timestamp="20250418 12:50:18.838" level="INFO">Closing workbook: &lt;RPA.Excel.Files.XlsxWorkbook object at 0x0000023AA5F36050&gt;</msg>
-<status status="PASS" starttime="20250418 12:50:18.838" endtime="20250418 12:50:18.838"/>
-</kw>
-<status status="PASS" starttime="20250418 12:49:51.352" endtime="20250418 12:50:18.838"/>
-</kw>
-<status status="PASS" starttime="20250418 12:49:51.337" endtime="20250418 12:50:18.838"/>
+<status status="PASS" starttime="20250421 16:32:55.091" endtime="20250421 16:33:22.948"/>
 </test>
-<status status="PASS" starttime="20250418 12:49:49.617" endtime="20250418 12:50:18.838"/>
+<status status="PASS" starttime="20250421 16:32:54.638" endtime="20250421 16:33:22.948"/>
 </suite>
 <statistics>
 <total>
@@ -425,7 +158,7 @@ sorting/filtering/manipulating using the ``RPA.Tables`` library.</doc>
 <tag>
 </tag>
 <suite>
-<stat pass="1" fail="0" skip="0" id="s1" name="Test Login Datadriven">Test Login Datadriven</stat>
+<stat pass="1" fail="0" skip="0" id="s1" name="Test Checkout">Test Checkout</stat>
 </suite>
 </statistics>
 <errors>
